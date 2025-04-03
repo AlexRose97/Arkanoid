@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bola : MonoBehaviour
@@ -24,6 +26,14 @@ public class Bola : MonoBehaviour
             rb.isKinematic = false;
             rb.gravityScale = 0;
             rb.AddForce(new Vector2(1, 1).normalized * 10, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("bloque"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
